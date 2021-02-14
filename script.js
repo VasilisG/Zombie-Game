@@ -65,11 +65,11 @@ function Game() {
         enemyCollider = new EnemyCollider(player, enemySpawner);
         bulletCollider = new BulletCollider(player, enemySpawner);
 
-        if(!startedPlaying){
-            dnbMusic.loop = true;
-            dnbMusic.play();
-            startedPlaying = true;
-        }
+        // if(!startedPlaying){
+        //     dnbMusic.loop = true;
+        //     dnbMusic.play();
+        //     startedPlaying = true;
+        // }
     }
 
     this.shouldUpdate = function(){
@@ -137,11 +137,20 @@ function Game() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
+    this.updateMusic = function(){
+        if(!startedPlaying){
+            dnbMusic.loop = true;
+            dnbMusic.play();
+            startedPlaying = true;
+        }
+    }
+
     this.update = function(){
         this.updateCtx();
         if(gameStart){
             if(this.shouldUpdate()){
                 this.updateEntities();
+                this.updateMusic();
             }
             else this.setGameOverState();
         }
